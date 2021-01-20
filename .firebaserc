@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "calendar-3rd": {
+      "hosting": {
+        "event-calendar": [
+          "calendar-3rd"
+        ]
+      }
+    }
+  }
+}

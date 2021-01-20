@@ -1,0 +1,51 @@
+<div class="both-sides">
+    <div class="left-side">
+        <div class="month-header">
+            {{updateMonth(-1) | date:'MMM'}}
+            <span class="month-header__current">
+                {{currentDate() | date:'MMM yy'}}
+            </span>
+            {{updateMonth(1) | date:'MMM'}}
+        </div>
+
+        <div class="calendar-container">
+
+            <button class="calendar-container__btn-arrow" (click)="decrementMonth()">
+                < 
+            </button>
+
+                    <div class="calendar-container__calendar-grid">
+                        <div class="cell">Su</div>
+                        <div class="cell">Mo</div>
+                        <div class="cell">Tu</div>
+                        <div class="cell">We</div>
+                        <div class="cell">Th</div>
+                        <div class="cell">Fr</div>
+                        <div class="cell">Sa</div>
+                        <div class="cell" *ngFor="let content of makeCellsArray()"
+                            [ngClass]="{'cell__light-grey' : content.getMonth() !== currentDate().getMonth()}"
+                            [ngClass]="{'cell__bold' : isToday(content)}"
+                       
+                            (click)="onSelectDate(content)">
+                            {{content | date:'d'}}
+                            <div class="cell__dot" *ngIf="eventDb[getDateStr(content)]">&bull;</div>
+                        </div>
+                    </div>
+
+                    <button class="calendar-container__btn-arrow" (click)="incrementMonth()">
+                        >
+                    </button>
+                    <!-- <button (click)="displayDb()">
+                        show me the db please
+                    </button> -->
+
+        </div>
+    </div>
+
+    <div class="right-side">
+      <app-day-view [selectedDate]="selectedDate" [eventDb]="eventDb" [getDateStr]="getDateStr">
+    </app-day-view>     
+
+    </div>
+
+</div>  

@@ -1,0 +1,28 @@
+<div class="diary">
+    <div class="diary__sign-in">sign in</div>
+    <div class="diary__date-header" *ngIf="selectedDate">
+        {{selectedDate | date:'EEEE'}}
+        <br>
+       <span class="upper-case">{{selectedDate | date:'MMMM d'}}</span> 
+    </div>
+    <div class="diary__event-list">
+        <div class="diary__event-list-opac">
+            <div  class="diary__event-list__text" *ngIf="eventDb[getDateStr()]">
+                <div *ngFor="let event of eventDb[getDateStr()]">
+                   {{event.startTime}} {{event.eventTitle}}
+                    
+                </div>
+            </div>
+
+            <div  class="diary__event-list__text" *ngIf="!eventDb[getDateStr()]">
+                No Appointments
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <button *ngIf="selectedDate" class="btn-add" (click)="onAddEvent()">&#43;</button>
+    
+</div>
